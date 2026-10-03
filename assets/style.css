@@ -246,6 +246,26 @@ td { color: var(--text-2); }
 .note p { margin: 0; }
 .note.warn { border-left-color: var(--danger); }
 
+.figs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 200px));
+  gap: 22px;
+  align-items: start;
+  margin: 22px 0 30px;
+}
+.figs figure { margin: 0; }
+.figs a { display: block; }
+.figs img {
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.15s;
+}
+.figs a:hover img { border-color: var(--border); }
+.figs figcaption { color: var(--text-3); font-size: 0.86rem; line-height: 1.4; margin-top: 10px; }
+
 details {
   background: var(--panel);
   border: 1px solid var(--border-soft);
@@ -276,6 +296,11 @@ details p, details ul, details ol { margin-bottom: 0; }
   .contact-card { padding: 26px 14px; }
 }
 
+@media (max-width: 480px) {
+  .figs { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .figs img { border-radius: 16px; }
+}
+
 /* MARK: Print (the manual prints cleanly) */
 
 @media print {
@@ -290,4 +315,8 @@ details p, details ul, details ol { margin-bottom: 0; }
   details > *:not(summary) { display: block; }
   .article h2 { break-before: page; border: 0; }
   .article h2:first-child { break-before: avoid; }
+  .figs { grid-template-columns: repeat(auto-fill, 4.2cm); gap: 0.5cm; }
+  .figs figure { break-inside: avoid; }
+  .figs img { box-shadow: none; border-color: #999; }
+  .figs figcaption { color: #444; }
 }
